@@ -25,6 +25,21 @@ header h1{
   font-size:40px;
 }
 
+header p{
+  font-size:18px;
+  margin:10px 0;
+}
+
+.gta-image{
+  width:300px;
+  max-width:100%;
+  border-radius:15px;
+  margin-top:20px;
+  display:block;
+  margin-left:auto;
+  margin-right:auto;
+}
+
 .container{
   max-width:900px;
   margin:auto;
@@ -57,6 +72,17 @@ p{
   border-radius:8px;
   text-decoration:none;
 }
+
+.back:hover{
+  background:#0d56bd;
+}
+
+footer{
+  text-align:center;
+  padding:30px;
+  color:#aaa;
+  font-size:14px;
+}
 </style>
 </head>
 
@@ -65,11 +91,14 @@ p{
 <header>
   <h1>🎮 Grand Theft Auto V</h1>
   <p>PS4 Game Information & Review</p>
+
+  <img src="gta.jpg" alt="GTA V" class="gta-image">
 </header>
 
 <div class="container">
 
   <div class="card">
+
     <h2>About the Game</h2>
 
     <p>
@@ -78,9 +107,13 @@ p{
     </p>
 
     <h2>Platform</h2>
-    <p>PlayStation 4 (PS4)</p>
+
+    <p>
+      PlayStation 4 (PS4)
+    </p>
 
     <h2>Game Features</h2>
+
     <p>
       • Open-world gameplay<br>
       • Story mode<br>
@@ -89,15 +122,23 @@ p{
     </p>
 
     <h2>Review</h2>
+
     <p>
       GTA V offers a large open world, detailed environments,
       missions and many activities to explore.
     </p>
 
-    <a href="index.html" class="back">← Back to PS4 Games</a>
+    <a href="index.html" class="back">
+      ← Back to PS4 Games
+    </a>
+
   </div>
 
 </div>
+
+<footer>
+  © 2026 PS4 Games — Game Information & Reviews
+</footer>
 
 </body>
 </html>
