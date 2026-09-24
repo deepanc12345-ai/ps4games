@@ -1,175 +1,638 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<meta name="viewport"
-content="width=device-width, initial-scale=1.0">
-
-<title>Game Details</title>
+<title>All Console Games</title>
 
 <style>
+*{
+  box-sizing:border-box;
+}
 
 body{
- margin:0;
- background:#090b0f;
- color:white;
- font-family:Arial,sans-serif;
+  margin:0;
+  background:#080a0e;
+  color:white;
+  font-family:Arial,sans-serif;
 }
 
 header{
- background:linear-gradient(135deg,#0757c9,#1680ed);
- padding:35px 20px;
- text-align:center;
+  background:linear-gradient(135deg,#0757c9,#1680ed);
+  padding:35px 18px;
+  text-align:center;
+}
+
+header h1{
+  margin:0;
+  font-size:38px;
+}
+
+header p{
+  font-size:17px;
+  margin:12px 0 0;
 }
 
 .container{
- max-width:850px;
- margin:auto;
- padding:25px 18px;
+  max-width:1100px;
+  margin:auto;
+  padding:20px;
 }
 
-.back{
- display:inline-block;
- background:#1769e0;
- color:white;
- text-decoration:none;
- padding:11px 16px;
- border-radius:9px;
- margin-bottom:20px;
+.search{
+  width:100%;
+  padding:17px;
+  border:2px solid #4c9cff;
+  border-radius:15px;
+  background:#ffffff12;
+  color:white;
+  font-size:18px;
+  outline:none;
+  margin-bottom:18px;
+}
+
+.search::placeholder{
+  color:#d8e8ff;
+}
+
+.categories{
+  display:flex;
+  gap:8px;
+  overflow-x:auto;
+  padding-bottom:12px;
+}
+
+.categories button{
+  border:0;
+  background:#202b3c;
+  color:white;
+  padding:10px 16px;
+  border-radius:9px;
+  white-space:nowrap;
+}
+
+.categories button.active{
+  background:#1769e0;
+}
+
+#loading{
+  text-align:center;
+  padding:30px;
+  color:#aaa;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:15px;
 }
 
 .card{
- background:#15181d;
- border:1px solid #303743;
- border-radius:16px;
- padding:25px;
+  display:block;
+  text-decoration:none;
+  color:white;
+  background:#15181d;
+  border:1px solid #292f38;
+  border-radius:15px;
+  padding:18px;
+  min-height:145px;
 }
 
-h1{
- color:#58aaff;
+.card:hover{
+  border-color:#55aaff;
+}
+
+.card h2{
+  color:#58aaff;
+  font-size:20px;
+  line-height:1.4;
+  margin:0 0 14px;
 }
 
 .badge{
- display:inline-block;
- background:#29456e;
- padding:8px 12px;
- border-radius:8px;
+  display:inline-block;
+  background:#29456e;
+  padding:7px 11px;
+  border-radius:8px;
+  font-size:13px;
 }
 
-.info{
- color:#c9d1dc;
- line-height:1.7;
+.year{
+  color:#aeb8c6;
+  margin-left:8px;
 }
 
-.official{
- display:inline-block;
- background:#1769e0;
- color:white;
- text-decoration:none;
- padding:12px 16px;
- border-radius:9px;
- margin-top:10px;
+.details{
+  display:inline-block;
+  margin-top:15px;
+  background:#1769e0;
+  padding:9px 14px;
+  border-radius:8px;
+  font-weight:bold;
 }
 
+.pagination{
+  text-align:center;
+  margin:25px 0;
+}
+
+.pagination button{
+  background:#1769e0;
+  color:white;
+  border:0;
+  padding:10px 15px;
+  border-radius:8px;
+  margin:4px;
+}
+
+#pageInfo{
+  margin:0 8px;
+  color:#ccc;
+}
+
+footer{
+  text-align:center;
+  padding:30px;
+  color:#777;
+}
+
+@media(max-width:600px){
+
+  header h1{
+    font-size:28px;
+  }
+
+  .grid{
+    grid-template-columns:1fr;
+  }
+
+}
 </style>
-
 </head>
 
 <body>
 
 <header>
-
-<h1>🎮 Game Details</h1>
-
-<p>PlayStation Game Information</p>
-
+  <h1>🎮 All Console Games</h1>
+  <p>PS1 • PS2 • PS3 • PS4 • PS5 • 10,000+ Catalog</p>
 </header>
 
 <div class="container">
 
-<a class="back" href="index.html">
-← Back to Games
-</a>
+  <input
+    id="search"
+    class="search"
+    type="text"
+    placeholder="🔎 Search games..."
+  >
 
-<div class="card">
+  <div class="categories">
 
-<span id="platform" class="badge"></span>
+    <button class="active" onclick="setPlatform('ALL',this)">
+      ALL
+    </button>
 
-<h1 id="name"></h1>
+    <button onclick="setPlatform('PS1',this)">
+      PS1
+    </button>
 
-<p class="info">
-Release Year:
-<strong id="year"></strong>
-</p>
+    <button onclick="setPlatform('PS2',this)">
+      PS2
+    </button>
 
-<hr>
+    <button onclick="setPlatform('PS3',this)">
+      PS3
+    </button>
 
-<h2>About the Game</h2>
+    <button onclick="setPlatform('PS4',this)">
+      PS4
+    </button>
 
-<p class="info">
-Explore information about this PlayStation game,
-including its platform and release details.
-</p>
+    <button onclick="setPlatform('PS5',this)">
+      PS5
+    </button>
 
-<h2>Platform</h2>
+  </div>
 
-<p id="platform2" class="info"></p>
+  <div id="loading">
+    Loading games...
+  </div>
 
-<h2>Release Year</h2>
+  <div id="games" class="grid"></div>
 
-<p id="year2" class="info"></p>
+  <div class="pagination">
 
-<a id="official"
-class="official"
-target="_blank"
-rel="noopener">
+    <button onclick="previousPage()">
+      ← Previous
+    </button>
 
-🔎 Search Official Info →
+    <span id="pageInfo"></span>
 
-</a>
+    <button onclick="nextPage()">
+      Next →
+    </button>
+
+  </div>
 
 </div>
 
-</div>
+<footer>
+  © 2026 All Console Games — Game Information & Reviews
+</footer>
+
 
 <script>
 
-const params=
-new URLSearchParams(location.search);
+let games = [];
 
-const name=
-params.get("name") || "Game";
+let currentPlatform = "ALL";
 
-const platform=
-params.get("platform") || "PlayStation";
+let currentPage = 1;
 
-const year=
-params.get("year") || "Not listed";
+const gamesPerPage = 60;
 
-document.getElementById("name")
-.textContent=name;
 
-document.getElementById("platform")
-.textContent=platform;
+/* PUBLIC GAME DATABASES */
 
-document.getElementById("platform2")
-.textContent=platform;
+const sources = {
 
-document.getElementById("year")
-.textContent=year;
+  PS1:
+  "https://raw.githubusercontent.com/Elbriga14/EveryVideoGameEver/main/GamesDB/PS1Games.json",
 
-document.getElementById("year2")
-.textContent=year;
+  PS2:
+  "https://raw.githubusercontent.com/Elbriga14/EveryVideoGameEver/main/GamesDB/PS2Games.json",
 
-document.getElementById("official").href=
-"https://www.google.com/search?q="+
-encodeURIComponent(name+" "+platform+" official");
+  PS3:
+  "https://raw.githubusercontent.com/Elbriga14/EveryVideoGameEver/main/GamesDB/PS3Games.json",
+
+  PS4:
+  "https://raw.githubusercontent.com/Elbriga14/EveryVideoGameEver/main/GamesDB/PS4Games.json"
+
+};
+
+
+/* LOAD DATABASE */
+
+async function loadGames(){
+
+  let allGames = [];
+
+  for(const platform in sources){
+
+    try{
+
+      const response =
+        await fetch(sources[platform]);
+
+      const data =
+        await response.json();
+
+      let list =
+        Array.isArray(data)
+        ? data
+        : Object.values(data);
+
+      list.forEach(game => {
+
+        const name =
+          game.name ||
+          game.title ||
+          game.Name ||
+          game.Game;
+
+        if(!name){
+          return;
+        }
+
+        const year =
+          game.year ||
+          game.releaseYear ||
+          game.release_year ||
+          "";
+
+        allGames.push({
+
+          name:String(name),
+
+          platform:platform,
+
+          year:String(year)
+
+        });
+
+      });
+
+    }catch(error){
+
+      console.log(
+        "Database error:",
+        platform,
+        error
+      );
+
+    }
+
+  }
+
+
+  /* REMOVE DUPLICATES */
+
+  const unique = new Map();
+
+  allGames.forEach(game => {
+
+    const key =
+      game.platform +
+      "|" +
+      game.name.toLowerCase();
+
+    if(!unique.has(key)){
+
+      unique.set(key,game);
+
+    }
+
+  });
+
+
+  games =
+    Array.from(unique.values());
+
+
+  games.sort((a,b)=>
+    a.name.localeCompare(b.name)
+  );
+
+
+  document.getElementById("loading")
+    .style.display="none";
+
+
+  renderGames();
+
+}
+
+
+/* PLATFORM FILTER */
+
+function setPlatform(platform,button){
+
+  currentPlatform = platform;
+
+  currentPage = 1;
+
+
+  document
+    .querySelectorAll(".categories button")
+    .forEach(btn =>
+      btn.classList.remove("active")
+    );
+
+
+  button.classList.add("active");
+
+
+  renderGames();
+
+}
+
+
+/* SEARCH */
+
+document
+  .getElementById("search")
+  .addEventListener("input",function(){
+
+    currentPage = 1;
+
+    renderGames();
+
+  });
+
+
+/* SHOW GAMES */
+
+function renderGames(){
+
+  const search =
+    document
+      .getElementById("search")
+      .value
+      .toLowerCase()
+      .trim();
+
+
+  const filtered =
+    games.filter(game => {
+
+      const platformMatch =
+        currentPlatform === "ALL" ||
+        game.platform === currentPlatform;
+
+
+      const searchMatch =
+        !search ||
+        game.name
+          .toLowerCase()
+          .includes(search);
+
+
+      return platformMatch && searchMatch;
+
+    });
+
+
+  const totalPages =
+    Math.max(
+      1,
+      Math.ceil(
+        filtered.length / gamesPerPage
+      )
+    );
+
+
+  if(currentPage > totalPages){
+
+    currentPage = totalPages;
+
+  }
+
+
+  const start =
+    (currentPage - 1) *
+    gamesPerPage;
+
+
+  const pageGames =
+    filtered.slice(
+      start,
+      start + gamesPerPage
+    );
+
+
+  const gamesContainer =
+    document.getElementById("games");
+
+
+  gamesContainer.innerHTML =
+    pageGames.map(game => {
+
+      /*
+       IMPORTANT:
+       Game click goes to game.html
+      */
+
+      const detailsURL =
+        "game.html?name=" +
+        encodeURIComponent(game.name) +
+        "&platform=" +
+        encodeURIComponent(game.platform) +
+        "&year=" +
+        encodeURIComponent(game.year);
+
+
+      return `
+
+        <a
+          class="card"
+          href="${detailsURL}"
+        >
+
+          <h2>
+            ${escapeHTML(game.name)}
+          </h2>
+
+          <span class="badge">
+            ${escapeHTML(game.platform)}
+          </span>
+
+          <span class="year">
+            ${escapeHTML(game.year)}
+          </span>
+
+          <br>
+
+          <span class="details">
+            View Details →
+          </span>
+
+        </a>
+
+      `;
+
+    }).join("");
+
+
+  document.getElementById("pageInfo")
+    .textContent =
+      "Page " +
+      currentPage +
+      " / " +
+      totalPages;
+
+}
+
+
+/* NEXT */
+
+function nextPage(){
+
+  const search =
+    document
+      .getElementById("search")
+      .value
+      .toLowerCase()
+      .trim();
+
+
+  const filtered =
+    games.filter(game => {
+
+      return (
+
+        (
+          currentPlatform === "ALL" ||
+          game.platform === currentPlatform
+        )
+
+        &&
+
+        (
+          !search ||
+          game.name
+            .toLowerCase()
+            .includes(search)
+        )
+
+      );
+
+    });
+
+
+  const totalPages =
+    Math.max(
+      1,
+      Math.ceil(
+        filtered.length / gamesPerPage
+      )
+    );
+
+
+  if(currentPage < totalPages){
+
+    currentPage++;
+
+    renderGames();
+
+    window.scrollTo(0,0);
+
+  }
+
+}
+
+
+/* PREVIOUS */
+
+function previousPage(){
+
+  if(currentPage > 1){
+
+    currentPage--;
+
+    renderGames();
+
+    window.scrollTo(0,0);
+
+  }
+
+}
+
+
+/* SECURITY */
+
+function escapeHTML(text){
+
+  return String(text)
+
+    .replace(/&/g,"&amp;")
+
+    .replace(/</g,"&lt;")
+
+    .replace(/>/g,"&gt;")
+
+    .replace(/"/g,"&quot;")
+
+    .replace(/'/g,"&#039;");
+
+}
+
+
+/* START */
+
+loadGames();
 
 </script>
 
 </body>
-
 </html>
