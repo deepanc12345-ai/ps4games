@@ -1,136 +1,208 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PS4 Games</title>
+
+<title>PS4 Games - Game Info & Reviews</title>
 
 <style>
+
+*{
+  box-sizing:border-box;
+}
+
 body{
   margin:0;
-  font-family:Arial;
+  font-family:Arial, sans-serif;
   background:#111;
   color:white;
 }
 
 header{
   background:#1769e0;
-  padding:25px;
+  padding:35px 20px;
   text-align:center;
 }
 
 header h1{
   margin:0;
-  font-size:38px;
+  font-size:42px;
 }
 
 header p{
-  font-size:18px;
+  font-size:19px;
+  margin-top:12px;
 }
 
 .container{
-  padding:20px;
-  max-width:900px;
+  max-width:1000px;
   margin:auto;
+  padding:25px;
 }
 
 .game{
   background:#222;
-  padding:20px;
-  margin:18px 0;
-  border-radius:15px;
+  padding:25px;
+  margin:20px 0;
+  border-radius:16px;
   border:1px solid #333;
 }
 
 .game h2{
   color:#4da3ff;
   margin-top:0;
+  font-size:28px;
 }
 
 .game p{
   font-size:17px;
-  line-height:1.5;
+  line-height:1.6;
+  color:#eee;
 }
 
 .tag{
   display:inline-block;
   background:#1769e0;
-  padding:6px 10px;
+  padding:7px 12px;
   border-radius:8px;
   font-size:13px;
+  margin-bottom:8px;
 }
+
+.button{
+  display:inline-block;
+  background:#1769e0;
+  color:white;
+  padding:11px 18px;
+  margin-top:10px;
+  border-radius:8px;
+  text-decoration:none;
+  font-weight:bold;
+}
+
+.button:hover{
+  background:#0d56bd;
+}
+
+footer{
+  text-align:center;
+  padding:30px;
+  color:#aaa;
+  font-size:14px;
+}
+
+@media(max-width:600px){
+
+  header h1{
+    font-size:32px;
+  }
+
+  header p{
+    font-size:16px;
+  }
+
+  .container{
+    padding:15px;
+  }
+
+  .game{
+    padding:20px;
+  }
+
+  .game h2{
+    font-size:25px;
+  }
+
+}
+
 </style>
 </head>
 
 <body>
 
 <header>
-<h1>🎮 PS4 Games</h1>
-<p>Game Info, Reviews & Latest Updates</p>
+  <h1>🎮 PS4 Games</h1>
+  <p>Game Info, Reviews & Latest Updates</p>
 </header>
 
 <div class="container">
 
-<div class="game">
-<h2>Grand Theft Auto V</h2>
-<span class="tag">PS4</span>
-<p>Open-world action game with story mode and online features.</p>
+  <div class="game">
+    <h2>Grand Theft Auto V</h2>
+    <span class="tag">PS4</span>
+    <p>Open-world action game with story mode and online features.</p>
+    <a href="gta5.html" class="button">View Details</a>
+  </div>
+
+  <div class="game">
+    <h2>God of War</h2>
+    <span class="tag">PS4</span>
+    <p>Action-adventure game featuring Kratos and Atreus.</p>
+    <a href="god-of-war.html" class="button">View Details</a>
+  </div>
+
+  <div class="game">
+    <h2>Marvel's Spider-Man</h2>
+    <span class="tag">PS4</span>
+    <p>Explore New York City and play as Spider-Man.</p>
+    <a href="spider-man.html" class="button">View Details</a>
+  </div>
+
+  <div class="game">
+    <h2>Red Dead Redemption 2</h2>
+    <span class="tag">PS4</span>
+    <p>Open-world western adventure with a huge story.</p>
+    <a href="rdr2.html" class="button">View Details</a>
+  </div>
+
+  <div class="game">
+    <h2>The Last of Us Part II</h2>
+    <span class="tag">PS4</span>
+    <p>Story-driven action-adventure game.</p>
+    <a href="last-of-us-2.html" class="button">View Details</a>
+  </div>
+
+  <div class="game">
+    <h2>Uncharted 4</h2>
+    <span class="tag">PS4</span>
+    <p>Action-adventure game following Nathan Drake.</p>
+    <a href="uncharted-4.html" class="button">View Details</a>
+  </div>
+
+  <div class="game">
+    <h2>Horizon Zero Dawn</h2>
+    <span class="tag">PS4</span>
+    <p>Explore a beautiful open world filled with machines.</p>
+    <a href="horizon-zero-dawn.html" class="button">View Details</a>
+  </div>
+
+  <div class="game">
+    <h2>Ghost of Tsushima</h2>
+    <span class="tag">PS4</span>
+    <p>Samurai action-adventure set in feudal Japan.</p>
+    <a href="ghost-of-tsushima.html" class="button">View Details</a>
+  </div>
+
+  <div class="game">
+    <h2>Resident Evil 2</h2>
+    <span class="tag">PS4</span>
+    <p>Survival horror adventure set in Raccoon City.</p>
+    <a href="resident-evil-2.html" class="button">View Details</a>
+  </div>
+
+  <div class="game">
+    <h2>Days Gone</h2>
+    <span class="tag">PS4</span>
+    <p>Open-world survival adventure featuring zombies.</p>
+    <a href="days-gone.html" class="button">View Details</a>
+  </div>
+
 </div>
 
-<div class="game">
-<h2>God of War</h2>
-<span class="tag">PS4</span>
-<p>Action-adventure game featuring Kratos and Atreus.</p>
-</div>
-
-<div class="game">
-<h2>Marvel's Spider-Man</h2>
-<span class="tag">PS4</span>
-<p>Explore New York City and play as Spider-Man.</p>
-</div>
-
-<div class="game">
-<h2>Red Dead Redemption 2</h2>
-<span class="tag">PS4</span>
-<p>Open-world western adventure with a huge story.</p>
-</div>
-
-<div class="game">
-<h2>The Last of Us Part II</h2>
-<span class="tag">PS4</span>
-<p>Story-driven action-adventure game.</p>
-</div>
-
-<div class="game">
-<h2>Uncharted 4</h2>
-<span class="tag">PS4</span>
-<p>Action-adventure game following Nathan Drake.</p>
-</div>
-
-<div class="game">
-<h2>Horizon Zero Dawn</h2>
-<span class="tag">PS4</span>
-<p>Explore a beautiful open world filled with machines.</p>
-</div>
-
-<div class="game">
-<h2>Ghost of Tsushima</h2>
-<span class="tag">PS4</span>
-<p>Samurai action-adventure set in feudal Japan.</p>
-</div>
-
-<div class="game">
-<h2>Resident Evil 2</h2>
-<span class="tag">PS4</span>
-<p>Survival horror adventure set in Raccoon City.</p>
-</div>
-
-<div class="game">
-<h2>Days Gone</h2>
-<span class="tag">PS4</span>
-<p>Open-world survival adventure with zombies.</p>
-</div>
-
-</div>
+<footer>
+  © 2026 PS4 Games — Game Information & Reviews
+</footer>
 
 </body>
 </html>
