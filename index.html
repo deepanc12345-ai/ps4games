@@ -1,208 +1,175 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>PS4 Games - Game Info & Reviews</title>
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Game Details</title>
 
 <style>
 
-*{
-  box-sizing:border-box;
-}
-
 body{
-  margin:0;
-  font-family:Arial, sans-serif;
-  background:#111;
-  color:white;
+ margin:0;
+ background:#090b0f;
+ color:white;
+ font-family:Arial,sans-serif;
 }
 
 header{
-  background:#1769e0;
-  padding:35px 20px;
-  text-align:center;
-}
-
-header h1{
-  margin:0;
-  font-size:42px;
-}
-
-header p{
-  font-size:19px;
-  margin-top:12px;
+ background:linear-gradient(135deg,#0757c9,#1680ed);
+ padding:35px 20px;
+ text-align:center;
 }
 
 .container{
-  max-width:1000px;
-  margin:auto;
-  padding:25px;
+ max-width:850px;
+ margin:auto;
+ padding:25px 18px;
 }
 
-.game{
-  background:#222;
-  padding:25px;
-  margin:20px 0;
-  border-radius:16px;
-  border:1px solid #333;
+.back{
+ display:inline-block;
+ background:#1769e0;
+ color:white;
+ text-decoration:none;
+ padding:11px 16px;
+ border-radius:9px;
+ margin-bottom:20px;
 }
 
-.game h2{
-  color:#4da3ff;
-  margin-top:0;
-  font-size:28px;
+.card{
+ background:#15181d;
+ border:1px solid #303743;
+ border-radius:16px;
+ padding:25px;
 }
 
-.game p{
-  font-size:17px;
-  line-height:1.6;
-  color:#eee;
+h1{
+ color:#58aaff;
 }
 
-.tag{
-  display:inline-block;
-  background:#1769e0;
-  padding:7px 12px;
-  border-radius:8px;
-  font-size:13px;
-  margin-bottom:8px;
+.badge{
+ display:inline-block;
+ background:#29456e;
+ padding:8px 12px;
+ border-radius:8px;
 }
 
-.button{
-  display:inline-block;
-  background:#1769e0;
-  color:white;
-  padding:11px 18px;
-  margin-top:10px;
-  border-radius:8px;
-  text-decoration:none;
-  font-weight:bold;
+.info{
+ color:#c9d1dc;
+ line-height:1.7;
 }
 
-.button:hover{
-  background:#0d56bd;
-}
-
-footer{
-  text-align:center;
-  padding:30px;
-  color:#aaa;
-  font-size:14px;
-}
-
-@media(max-width:600px){
-
-  header h1{
-    font-size:32px;
-  }
-
-  header p{
-    font-size:16px;
-  }
-
-  .container{
-    padding:15px;
-  }
-
-  .game{
-    padding:20px;
-  }
-
-  .game h2{
-    font-size:25px;
-  }
-
+.official{
+ display:inline-block;
+ background:#1769e0;
+ color:white;
+ text-decoration:none;
+ padding:12px 16px;
+ border-radius:9px;
+ margin-top:10px;
 }
 
 </style>
+
 </head>
 
 <body>
 
 <header>
-  <h1>🎮 PS4 Games</h1>
-  <p>Game Info, Reviews & Latest Updates</p>
+
+<h1>🎮 Game Details</h1>
+
+<p>PlayStation Game Information</p>
+
 </header>
 
 <div class="container">
 
-  <div class="game">
-    <h2>Grand Theft Auto V</h2>
-    <span class="tag">PS4</span>
-    <p>Open-world action game with story mode and online features.</p>
-    <a href="gta5.html" class="button">View Details</a>
-  </div>
+<a class="back" href="index.html">
+← Back to Games
+</a>
 
-  <div class="game">
-    <h2>God of War</h2>
-    <span class="tag">PS4</span>
-    <p>Action-adventure game featuring Kratos and Atreus.</p>
-    <a href="god-of-war.html" class="button">View Details</a>
-  </div>
+<div class="card">
 
-  <div class="game">
-    <h2>Marvel's Spider-Man</h2>
-    <span class="tag">PS4</span>
-    <p>Explore New York City and play as Spider-Man.</p>
-    <a href="spider-man.html" class="button">View Details</a>
-  </div>
+<span id="platform" class="badge"></span>
 
-  <div class="game">
-    <h2>Red Dead Redemption 2</h2>
-    <span class="tag">PS4</span>
-    <p>Open-world western adventure with a huge story.</p>
-    <a href="rdr2.html" class="button">View Details</a>
-  </div>
+<h1 id="name"></h1>
 
-  <div class="game">
-    <h2>The Last of Us Part II</h2>
-    <span class="tag">PS4</span>
-    <p>Story-driven action-adventure game.</p>
-    <a href="last-of-us-2.html" class="button">View Details</a>
-  </div>
+<p class="info">
+Release Year:
+<strong id="year"></strong>
+</p>
 
-  <div class="game">
-    <h2>Uncharted 4</h2>
-    <span class="tag">PS4</span>
-    <p>Action-adventure game following Nathan Drake.</p>
-    <a href="uncharted-4.html" class="button">View Details</a>
-  </div>
+<hr>
 
-  <div class="game">
-    <h2>Horizon Zero Dawn</h2>
-    <span class="tag">PS4</span>
-    <p>Explore a beautiful open world filled with machines.</p>
-    <a href="horizon-zero-dawn.html" class="button">View Details</a>
-  </div>
+<h2>About the Game</h2>
 
-  <div class="game">
-    <h2>Ghost of Tsushima</h2>
-    <span class="tag">PS4</span>
-    <p>Samurai action-adventure set in feudal Japan.</p>
-    <a href="ghost-of-tsushima.html" class="button">View Details</a>
-  </div>
+<p class="info">
+Explore information about this PlayStation game,
+including its platform and release details.
+</p>
 
-  <div class="game">
-    <h2>Resident Evil 2</h2>
-    <span class="tag">PS4</span>
-    <p>Survival horror adventure set in Raccoon City.</p>
-    <a href="resident-evil-2.html" class="button">View Details</a>
-  </div>
+<h2>Platform</h2>
 
-  <div class="game">
-    <h2>Days Gone</h2>
-    <span class="tag">PS4</span>
-    <p>Open-world survival adventure featuring zombies.</p>
-    <a href="days-gone.html" class="button">View Details</a>
-  </div>
+<p id="platform2" class="info"></p>
+
+<h2>Release Year</h2>
+
+<p id="year2" class="info"></p>
+
+<a id="official"
+class="official"
+target="_blank"
+rel="noopener">
+
+🔎 Search Official Info →
+
+</a>
 
 </div>
 
-<footer>
-  © 2026 PS4 Games — Game Information & Reviews
-</footer>
+</div>
+
+<script>
+
+const params=
+new URLSearchParams(location.search);
+
+const name=
+params.get("name") || "Game";
+
+const platform=
+params.get("platform") || "PlayStation";
+
+const year=
+params.get("year") || "Not listed";
+
+document.getElementById("name")
+.textContent=name;
+
+document.getElementById("platform")
+.textContent=platform;
+
+document.getElementById("platform2")
+.textContent=platform;
+
+document.getElementById("year")
+.textContent=year;
+
+document.getElementById("year2")
+.textContent=year;
+
+document.getElementById("official").href=
+"https://www.google.com/search?q="+
+encodeURIComponent(name+" "+platform+" official");
+
+</script>
 
 </body>
+
 </html>
