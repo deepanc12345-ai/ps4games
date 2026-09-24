@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>God of War - PS4 Game Info</title>
+
+<style>
+body{
+  margin:0;
+  font-family:Arial,sans-serif;
+  background:#111;
+  color:white;
+}
+
+header{
+  background:#1769e0;
+  padding:30px 20px;
+  text-align:center;
+}
+
+header h1{
+  margin:0;
+  font-size:40px;
+}
+
+header p{
+  font-size:18px;
+  margin:10px 0;
+}
+
+.game-image{
+  width:300px;
+  max-width:100%;
+  border-radius:15px;
+  margin-top:20px;
+}
+
+.container{
+  max-width:900px;
+  margin:auto;
+  padding:25px;
+}
+
+.card{
+  background:#222;
+  padding:25px;
+  margin-top:20px;
+  border-radius:16px;
+  border:1px solid #333;
+}
+
+h2{
+  color:#4da3ff;
+}
+
+p{
+  font-size:18px;
+  line-height:1.6;
+}
+
+.back{
+  display:inline-block;
+  margin-top:20px;
+  background:#1769e0;
+  color:white;
+  padding:12px 18px;
+  border-radius:8px;
+  text-decoration:none;
+}
+
+.back:hover{
+  background:#0d56bd;
+}
+
+footer{
+  text-align:center;
+  padding:30px;
+  color:#aaa;
+  font-size:14px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>🎮 God of War</h1>
+  <p>PS4 Game Information & Review</p>
+
+  <img src="godofwar.jpg" alt="God of War" class="game-image">
+</header>
+
+<div class="container">
+
+  <div class="card">
+
+    <h2>About the Game</h2>
+
+    <p>
+      God of War is an action-adventure game featuring
+      Kratos and his son Atreus on a dangerous journey
+      through a world inspired by Norse mythology.
+    </p>
+
+    <h2>Platform</h2>
+
+    <p>
+      PlayStation 4 (PS4)
+    </p>
+
+    <h2>Game Features</h2>
+
+    <p>
+      • Action-adventure gameplay<br>
+      • Story-driven experience<br>
+      • Kratos and Atreus<br>
+      • Norse mythology<br>
+      • Exploration and combat
+    </p>
+
+    <h2>Review</h2>
+
+    <p>
+      God of War combines cinematic storytelling,
+      exploration and intense combat in a detailed
+      world inspired by Norse mythology.
+    </p>
+
+    <a href="index.html" class="back">
+      ← Back to PS4 Games
+    </a>
+
+  </div>
+
+</div>
+
+<footer>
+  © 2026 PS4 Games — Game Information & Reviews
+</footer>
+
+</body>
+</html>
