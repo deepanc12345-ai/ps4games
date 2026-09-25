@@ -60,14 +60,14 @@ header p{
     color:#8d98a8;
 }
 
-/* CATEGORY TITLE */
+/* TITLE */
 .title{
     color:#58aaff;
     font-size:25px;
     margin-bottom:18px;
 }
 
-/* CATEGORY BUTTONS */
+/* CATEGORY */
 .categories{
     display:flex;
     gap:10px;
@@ -113,6 +113,7 @@ header p{
     box-shadow:0 8px 25px rgba(0,120,255,0.18);
 }
 
+/* IMAGE */
 .game-image{
     width:100%;
     height:145px;
@@ -121,6 +122,7 @@ header p{
     background:#1a1f27;
 }
 
+/* INFO */
 .game-info{
     padding:15px;
 }
@@ -137,7 +139,7 @@ header p{
     margin-bottom:14px;
 }
 
-/* VIEW DETAILS BUTTON */
+/* DETAILS BUTTON */
 .details-btn{
     display:block;
     width:100%;
@@ -235,12 +237,22 @@ footer{
 
 <body>
 
+<!-- HEADER -->
+
 <header>
+
     <h1>🎮 All Console Games</h1>
-    <p>Browse games by console and category</p>
+
+    <p>
+        Browse games by console and category
+    </p>
+
 </header>
 
+
 <div class="container">
+
+    <!-- SEARCH -->
 
     <input
         type="text"
@@ -250,59 +262,97 @@ footer{
         onkeyup="searchGames()"
     >
 
-    <div class="title">Categories</div>
+
+    <!-- CATEGORY -->
+
+    <div class="title">
+        Categories
+    </div>
+
 
     <div class="categories">
 
-        <button class="category-btn active"
-                onclick="filterCategory('All',this)">
+        <button
+            class="category-btn active"
+            onclick="filterCategory('All',this)">
             All
         </button>
 
-        <button class="category-btn"
-                onclick="filterCategory('GameCube',this)">
+
+        <button
+            class="category-btn"
+            onclick="filterCategory('GameCube',this)">
             GameCube
         </button>
 
-        <button class="category-btn"
-                onclick="filterCategory('PS1',this)">
+
+        <button
+            class="category-btn"
+            onclick="filterCategory('PS1',this)">
             PS1
         </button>
 
-        <button class="category-btn"
-                onclick="filterCategory('PS2',this)">
+
+        <button
+            class="category-btn"
+            onclick="filterCategory('PS2',this)">
             PS2
         </button>
 
-        <button class="category-btn"
-                onclick="filterCategory('PS3',this)">
+
+        <button
+            class="category-btn"
+            onclick="filterCategory('PS3',this)">
             PS3
         </button>
 
-        <button class="category-btn"
-                onclick="filterCategory('PS4',this)">
+
+        <button
+            class="category-btn"
+            onclick="filterCategory('PS4',this)">
             PS4
         </button>
 
-        <button class="category-btn"
-                onclick="filterCategory('PS5',this)">
+
+        <button
+            class="category-btn"
+            onclick="filterCategory('PS5',this)">
             PS5
         </button>
 
-        <button class="category-btn"
-                onclick="filterCategory('Wii',this)">
+
+        <button
+            class="category-btn"
+            onclick="filterCategory('Wii',this)">
             Wii
         </button>
 
     </div>
 
-    <div class="title">Games</div>
 
-    <div class="game-grid" id="gameGrid">
+    <!-- GAMES -->
 
-        <!-- GAMECUBE -->
+    <div class="title">
+        Games
+    </div>
 
-        <div class="game-card" data-category="GameCube" data-name="Super Mario Sunshine">
+
+    <div
+        class="game-grid"
+        id="gameGrid"
+    >
+
+
+        <!-- ========================= -->
+        <!-- GAMECUBE GAMES -->
+        <!-- ========================= -->
+
+
+        <div
+            class="game-card"
+            data-category="GameCube"
+            data-name="Super Mario Sunshine"
+        >
 
             <img
                 class="game-image"
@@ -320,7 +370,10 @@ footer{
                     🎮 GameCube
                 </div>
 
-                <a class="details-btn" href="games/super-mario-sunshine.html">
+                <a
+                    class="details-btn"
+                    href="games/super-mario-sunshine.html"
+                >
                     View Details
                 </a>
 
@@ -329,7 +382,12 @@ footer{
         </div>
 
 
-        <div class="game-card" data-category="GameCube" data-name="The Legend of Zelda Wind Waker">
+
+        <div
+            class="game-card"
+            data-category="GameCube"
+            data-name="The Legend of Zelda Wind Waker"
+        >
 
             <img
                 class="game-image"
@@ -347,7 +405,10 @@ footer{
                     🎮 GameCube
                 </div>
 
-                <a class="details-btn" href="games/zelda-wind-waker.html">
+                <a
+                    class="details-btn"
+                    href="games/zelda-wind-waker.html"
+                >
                     View Details
                 </a>
 
@@ -356,7 +417,12 @@ footer{
         </div>
 
 
-        <div class="game-card" data-category="GameCube" data-name="Mario Kart Double Dash">
+
+        <div
+            class="game-card"
+            data-category="GameCube"
+            data-name="Mario Kart Double Dash"
+        >
 
             <img
                 class="game-image"
@@ -374,7 +440,10 @@ footer{
                     🎮 GameCube
                 </div>
 
-                <a class="details-btn" href="games/mario-kart-double-dash.html">
+                <a
+                    class="details-btn"
+                    href="games/mario-kart-double-dash.html"
+                >
                     View Details
                 </a>
 
@@ -383,7 +452,12 @@ footer{
         </div>
 
 
-        <div class="game-card" data-category="GameCube" data-name="Super Smash Bros Melee">
+
+        <div
+            class="game-card"
+            data-category="GameCube"
+            data-name="Super Smash Bros Melee"
+        >
 
             <img
                 class="game-image"
@@ -401,7 +475,10 @@ footer{
                     🎮 GameCube
                 </div>
 
-                <a class="details-btn" href="games/super-smash-bros-melee.html">
+                <a
+                    class="details-btn"
+                    href="games/super-smash-bros-melee.html"
+                >
                     View Details
                 </a>
 
@@ -410,7 +487,12 @@ footer{
         </div>
 
 
-        <div class="game-card" data-category="GameCube" data-name="Metroid Prime">
+
+        <div
+            class="game-card"
+            data-category="GameCube"
+            data-name="Metroid Prime"
+        >
 
             <img
                 class="game-image"
@@ -428,7 +510,10 @@ footer{
                     🎮 GameCube
                 </div>
 
-                <a class="details-btn" href="games/metroid-prime.html">
+                <a
+                    class="details-btn"
+                    href="games/metroid-prime.html"
+                >
                     View Details
                 </a>
 
@@ -437,9 +522,17 @@ footer{
         </div>
 
 
-        <!-- PS4 -->
 
-        <div class="game-card" data-category="PS4" data-name="Grand Theft Auto V">
+        <!-- ========================= -->
+        <!-- PS4 -->
+        <!-- ========================= -->
+
+
+        <div
+            class="game-card"
+            data-category="PS4"
+            data-name="Grand Theft Auto V"
+        >
 
             <img
                 class="game-image"
@@ -457,7 +550,10 @@ footer{
                     🎮 PS4
                 </div>
 
-                <a class="details-btn" href="games/gta-5.html">
+                <a
+                    class="details-btn"
+                    href="games/gta-5.html"
+                >
                     View Details
                 </a>
 
@@ -468,15 +564,27 @@ footer{
 
     </div>
 
-    <div class="no-results" id="noResults">
+
+    <!-- NO RESULTS -->
+
+    <div
+        class="no-results"
+        id="noResults"
+    >
         No games found.
     </div>
 
 </div>
 
+
+<!-- FOOTER -->
+
 <footer>
+
     © 2026 All Console Games
+
 </footer>
+
 
 
 <script>
@@ -484,51 +592,86 @@ footer{
 let currentCategory = "All";
 
 
+/* =========================
+   CATEGORY FILTER
+========================= */
+
 function filterCategory(category, button){
 
     currentCategory = category;
 
-    document.querySelectorAll(".category-btn").forEach(function(btn){
-        btn.classList.remove("active");
-    });
+
+    document
+        .querySelectorAll(".category-btn")
+        .forEach(function(btn){
+
+            btn.classList.remove("active");
+
+        });
+
 
     button.classList.add("active");
 
+
     searchGames();
+
 }
 
+
+
+/* =========================
+   SEARCH + FILTER
+========================= */
 
 function searchGames(){
 
     let search =
-        document.getElementById("searchBox").value.toLowerCase();
+        document
+        .getElementById("searchBox")
+        .value
+        .toLowerCase()
+        .trim();
+
 
     let games =
-        document.querySelectorAll(".game-card");
+        document
+        .querySelectorAll(".game-card");
+
 
     let found = 0;
+
 
     games.forEach(function(game){
 
         let name =
-            game.getAttribute("data-name").toLowerCase();
+            game
+            .getAttribute("data-name")
+            .toLowerCase();
+
 
         let category =
-            game.getAttribute("data-category");
+            game
+            .getAttribute("data-category");
+
 
         let nameMatch =
             name.includes(search);
+
 
         let categoryMatch =
             currentCategory === "All" ||
             category === currentCategory;
 
+
         if(nameMatch && categoryMatch){
 
             game.style.display = "block";
+
             found++;
 
-        }else{
+        }
+
+        else{
 
             game.style.display = "none";
 
@@ -537,17 +680,37 @@ function searchGames(){
     });
 
 
+    let noResults =
+        document.getElementById("noResults");
+
+
     if(found === 0){
 
-        document.getElementById("noResults").style.display = "block";
+        noResults.style.display = "block";
 
-    }else{
+    }
 
-        document.getElementById("noResults").style.display = "none";
+    else{
+
+        noResults.style.display = "none";
 
     }
 
 }
+
+
+/* =========================
+   PAGE LOAD
+========================= */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function(){
+
+        searchGames();
+
+    }
+);
 
 </script>
 
