@@ -4,269 +4,571 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>All Console Games</title>
+<title>Console Games Hub</title>
 
 <style>
+
 *{
     box-sizing:border-box;
+    margin:0;
+    padding:0;
 }
 
 body{
-    margin:0;
-    background:#080a0e;
+    background:#07090d;
     color:#fff;
-    font-family:Arial,sans-serif;
+    font-family:Arial,Helvetica,sans-serif;
 }
 
-/* HEADER */
+/* ================= HEADER ================= */
+
 header{
-    background:linear-gradient(135deg,#0757c9,#1680ed);
-    padding:38px 15px;
+    background:
+    radial-gradient(circle at 20% 20%,#214dff55,transparent 35%),
+    radial-gradient(circle at 80% 80%,#9d00ff44,transparent 35%),
+    linear-gradient(135deg,#090d18,#101a3a,#080b14);
+
+    padding:55px 20px 45px;
     text-align:center;
+
+    border-bottom:1px solid #20283a;
+}
+
+.logo{
+    font-size:15px;
+    color:#6ea8ff;
+    font-weight:bold;
+    letter-spacing:3px;
+    margin-bottom:12px;
 }
 
 header h1{
-    margin:0;
-    font-size:38px;
+    font-size:42px;
+    font-weight:900;
+    letter-spacing:-1px;
+}
+
+header h1 span{
+    color:#4d8dff;
 }
 
 header p{
-    margin:12px 0 0;
-    color:#e5f1ff;
-    font-size:17px;
+    color:#8f9bb0;
+    margin-top:12px;
+    font-size:15px;
 }
 
-/* CONTAINER */
+
+/* ================= CONTAINER ================= */
+
 .container{
-    max-width:1200px;
+    max-width:1250px;
     margin:auto;
-    padding:25px 15px;
+    padding:30px 18px 60px;
 }
 
-/* SEARCH */
+
+/* ================= SEARCH ================= */
+
+.search-box{
+    position:relative;
+    margin-bottom:35px;
+}
+
 .search{
     width:100%;
-    padding:16px;
-    border:2px solid #438fff;
-    border-radius:12px;
-    background:#15181d;
+    padding:17px 20px 17px 50px;
+
+    background:#10141d;
     color:#fff;
-    font-size:17px;
+
+    border:1px solid #293246;
+    border-radius:14px;
+
     outline:none;
-    margin-bottom:25px;
+    font-size:16px;
+
+    transition:.25s;
+}
+
+.search:focus{
+    border-color:#4d8dff;
+    box-shadow:0 0 25px #3478ff20;
 }
 
 .search::placeholder{
-    color:#8d98a8;
+    color:#687388;
 }
 
-/* TITLE */
-.title{
-    color:#58aaff;
-    font-size:25px;
+.search-icon{
+    position:absolute;
+    left:18px;
+    top:15px;
+    font-size:20px;
+}
+
+
+/* ================= SECTION TITLE ================= */
+
+.section-title{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
     margin-bottom:18px;
 }
 
-/* CATEGORY */
+.section-title h2{
+    font-size:22px;
+}
+
+.section-title span{
+    color:#657189;
+    font-size:13px;
+}
+
+
+/* ================= CATEGORIES ================= */
+
 .categories{
     display:flex;
     gap:10px;
-    flex-wrap:wrap;
-    margin-bottom:30px;
+    overflow-x:auto;
+
+    padding-bottom:8px;
+    margin-bottom:38px;
+
+    scrollbar-width:none;
+}
+
+.categories::-webkit-scrollbar{
+    display:none;
 }
 
 .category-btn{
-    background:#15181d;
-    color:#fff;
-    border:1px solid #303844;
-    padding:10px 16px;
-    border-radius:8px;
+    flex-shrink:0;
+
+    background:#10141d;
+    color:#aeb8ca;
+
+    border:1px solid #252d3d;
+
+    padding:11px 18px;
+
+    border-radius:10px;
+
     cursor:pointer;
+
     font-size:14px;
+    font-weight:bold;
+
+    transition:.2s;
 }
 
-.category-btn:hover,
+.category-btn:hover{
+    color:#fff;
+    border-color:#4d8dff;
+}
+
 .category-btn.active{
-    background:#1677e8;
-    border-color:#1677e8;
+    background:linear-gradient(135deg,#2563ff,#754dff);
+    color:#fff;
+    border-color:transparent;
+
+    box-shadow:0 5px 20px #3b6cff35;
 }
 
-/* GAME GRID */
+
+/* ================= GAME GRID ================= */
+
 .game-grid{
     display:grid;
-    grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
-    gap:18px;
+
+    grid-template-columns:
+    repeat(4,minmax(0,1fr));
+
+    gap:20px;
 }
 
-/* GAME CARD */
+
+/* ================= GAME CARD ================= */
+
 .game-card{
-    background:#11151b;
-    border:1px solid #252d38;
-    border-radius:14px;
+    background:#0e1219;
+
+    border:1px solid #202838;
+
+    border-radius:16px;
+
     overflow:hidden;
-    transition:0.25s;
+
+    transition:.3s;
+
+    position:relative;
 }
 
 .game-card:hover{
-    transform:translateY(-5px);
-    border-color:#438fff;
-    box-shadow:0 8px 25px rgba(0,120,255,0.18);
+    transform:translateY(-7px);
+
+    border-color:#397cff;
+
+    box-shadow:
+    0 15px 40px #00000066,
+    0 0 25px #397cff18;
 }
 
-/* IMAGE */
-.game-image{
-    width:100%;
-    height:145px;
-    object-fit:cover;
-    display:block;
-    background:#1a1f27;
+
+/* ================= GAME COVER ================= */
+
+.game-cover{
+    height:210px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    position:relative;
+
+    overflow:hidden;
 }
 
-/* INFO */
+.game-cover::after{
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    background:
+    linear-gradient(
+        to top,
+        #080a0f 0%,
+        transparent 65%
+    );
+}
+
+
+/* Different covers */
+
+.mario{
+    background:
+    radial-gradient(circle at 30% 30%,#ffcf33,transparent 20%),
+    linear-gradient(135deg,#e62b3f,#5a1020);
+}
+
+.zelda{
+    background:
+    radial-gradient(circle at 70% 25%,#ffe879,transparent 18%),
+    linear-gradient(135deg,#176b48,#071f19);
+}
+
+.mariokart{
+    background:
+    radial-gradient(circle at 30% 25%,#ff4444,transparent 20%),
+    linear-gradient(135deg,#222,#6120c8);
+}
+
+.smash{
+    background:
+    radial-gradient(circle at 50% 30%,#ffcc55,transparent 15%),
+    linear-gradient(135deg,#181818,#242d72);
+}
+
+.metroid{
+    background:
+    radial-gradient(circle at 50% 30%,#5dffdf,transparent 18%),
+    linear-gradient(135deg,#071c24,#401276);
+}
+
+.gta{
+    background:
+    radial-gradient(circle at 50% 20%,#ffffff33,transparent 20%),
+    linear-gradient(135deg,#222,#111,#5a1e77);
+}
+
+
+/* COVER ICON */
+
+.cover-icon{
+    font-size:80px;
+    position:relative;
+    z-index:2;
+
+    filter:drop-shadow(0 10px 15px #000);
+}
+
+.cover-console{
+    position:absolute;
+
+    top:12px;
+    left:12px;
+
+    z-index:5;
+
+    background:#080a0dcc;
+
+    border:1px solid #ffffff22;
+
+    padding:6px 10px;
+
+    border-radius:7px;
+
+    font-size:11px;
+    font-weight:bold;
+
+    color:#fff;
+}
+
+
+/* ================= GAME INFO ================= */
+
 .game-info{
-    padding:15px;
+    padding:17px;
 }
 
 .game-name{
-    font-size:18px;
-    font-weight:bold;
-    margin-bottom:8px;
+    font-size:17px;
+    font-weight:800;
+
+    line-height:1.3;
+
+    margin-bottom:7px;
 }
 
 .game-category{
-    color:#8fa4bd;
-    font-size:13px;
-    margin-bottom:14px;
+    color:#68758b;
+
+    font-size:12px;
+
+    margin-bottom:15px;
 }
 
-/* DETAILS BUTTON */
+
+/* ================= BUTTON ================= */
+
 .details-btn{
     display:block;
+
     width:100%;
+
     text-align:center;
+
     text-decoration:none;
-    background:#1677e8;
+
+    background:#151c29;
+
+    border:1px solid #2c3850;
+
     color:#fff;
+
     padding:11px;
-    border-radius:8px;
+
+    border-radius:9px;
+
+    font-size:13px;
     font-weight:bold;
-    transition:0.2s;
+
+    transition:.2s;
 }
 
 .details-btn:hover{
-    background:#0b5fc2;
+    background:linear-gradient(135deg,#2563ff,#754dff);
+
+    border-color:transparent;
 }
 
-/* NO RESULTS */
+
+/* ================= NO RESULTS ================= */
+
 .no-results{
     display:none;
+
     text-align:center;
-    padding:40px 10px;
-    color:#8d98a8;
-    font-size:18px;
+
+    padding:70px 20px;
+
+    color:#68758b;
 }
 
-/* FOOTER */
+
+/* ================= FOOTER ================= */
+
 footer{
-    margin-top:50px;
-    padding:25px 15px;
+    border-top:1px solid #171d29;
+
+    background:#090c12;
+
+    padding:30px 15px;
+
     text-align:center;
-    background:#0d1015;
-    color:#7f8997;
-    font-size:14px;
+
+    color:#566174;
+
+    font-size:13px;
 }
 
-/* MOBILE */
-@media(max-width:600px){
+footer strong{
+    color:#738cff;
+}
+
+
+/* ================= TABLET ================= */
+
+@media(max-width:950px){
+
+    .game-grid{
+        grid-template-columns:
+        repeat(3,minmax(0,1fr));
+    }
+
+}
+
+
+/* ================= MOBILE ================= */
+
+@media(max-width:650px){
 
     header{
-        padding:30px 12px;
+        padding:38px 15px;
     }
 
     header h1{
-        font-size:28px;
+        font-size:29px;
     }
 
     header p{
-        font-size:14px;
+        font-size:13px;
     }
 
     .container{
-        padding:20px 12px;
+        padding:22px 12px 45px;
     }
 
     .game-grid{
-        grid-template-columns:repeat(2,1fr);
+        grid-template-columns:
+        repeat(2,minmax(0,1fr));
+
         gap:12px;
     }
 
-    .game-image{
-        height:115px;
+    .game-cover{
+        height:145px;
+    }
+
+    .cover-icon{
+        font-size:55px;
     }
 
     .game-info{
-        padding:11px;
+        padding:12px;
     }
 
     .game-name{
-        font-size:15px;
+        font-size:14px;
     }
 
     .game-category{
-        font-size:12px;
+        font-size:11px;
+        margin-bottom:11px;
     }
 
     .details-btn{
-        font-size:13px;
-        padding:9px;
+        padding:9px 5px;
+        font-size:12px;
     }
+
 }
+
+
+/* ================= SMALL MOBILE ================= */
 
 @media(max-width:380px){
 
     .game-grid{
-        grid-template-columns:1fr;
+        grid-template-columns:1fr 1fr;
+        gap:9px;
     }
 
-    .game-image{
-        height:160px;
+    .game-cover{
+        height:125px;
     }
+
+    .cover-icon{
+        font-size:45px;
+    }
+
+    .game-info{
+        padding:10px;
+    }
+
+    .game-name{
+        font-size:13px;
+    }
+
 }
+
 </style>
 </head>
 
+
 <body>
 
-<!-- HEADER -->
+
+<!-- ================= HEADER ================= -->
 
 <header>
 
-    <h1>🎮 All Console Games</h1>
+    <div class="logo">
+        🎮 CONSOLE GAMES HUB
+    </div>
+
+    <h1>
+        All <span>Console Games</span>
+    </h1>
 
     <p>
-        Browse games by console and category
+        Discover games from your favorite consoles
     </p>
 
 </header>
 
 
+
 <div class="container">
 
-    <!-- SEARCH -->
 
-    <input
-        type="text"
-        id="searchBox"
-        class="search"
-        placeholder="🔍 Search games..."
-        onkeyup="searchGames()"
-    >
+    <!-- ================= SEARCH ================= -->
+
+    <div class="search-box">
+
+        <div class="search-icon">
+            🔍
+        </div>
+
+        <input
+            id="searchBox"
+            class="search"
+            type="text"
+            placeholder="Search your game..."
+            onkeyup="searchGames()"
+        >
+
+    </div>
 
 
-    <!-- CATEGORY -->
 
-    <div class="title">
-        Categories
+    <!-- ================= CATEGORY ================= -->
+
+    <div class="section-title">
+
+        <h2>
+            Browse Consoles
+        </h2>
+
+        <span>
+            Choose platform
+        </span>
+
     </div>
 
 
@@ -275,65 +577,67 @@ footer{
         <button
             class="category-btn active"
             onclick="filterCategory('All',this)">
-            All
+            🎮 All
         </button>
-
 
         <button
             class="category-btn"
             onclick="filterCategory('GameCube',this)">
-            GameCube
+            🟣 GameCube
         </button>
-
 
         <button
             class="category-btn"
             onclick="filterCategory('PS1',this)">
-            PS1
+            🔵 PS1
         </button>
-
 
         <button
             class="category-btn"
             onclick="filterCategory('PS2',this)">
-            PS2
+            ⚫ PS2
         </button>
-
 
         <button
             class="category-btn"
             onclick="filterCategory('PS3',this)">
-            PS3
+            🔷 PS3
         </button>
-
 
         <button
             class="category-btn"
             onclick="filterCategory('PS4',this)">
-            PS4
+            🔵 PS4
         </button>
-
 
         <button
             class="category-btn"
             onclick="filterCategory('PS5',this)">
-            PS5
+            ⚪ PS5
         </button>
-
 
         <button
             class="category-btn"
             onclick="filterCategory('Wii',this)">
-            Wii
+            🔴 Wii
         </button>
 
     </div>
 
 
-    <!-- GAMES -->
 
-    <div class="title">
-        Games
+    <!-- ================= GAMES ================= -->
+
+    <div class="section-title">
+
+        <h2>
+            Popular Games
+        </h2>
+
+        <span id="gameCount">
+            6 Games
+        </span>
+
     </div>
 
 
@@ -343,10 +647,8 @@ footer{
     >
 
 
-        <!-- ========================= -->
-        <!-- GAMECUBE GAMES -->
-        <!-- ========================= -->
 
+        <!-- GAME 1 -->
 
         <div
             class="game-card"
@@ -354,11 +656,18 @@ footer{
             data-name="Super Mario Sunshine"
         >
 
-            <img
-                class="game-image"
-                src="https://images.unsplash.com/photo-1606144042614-b2417e99c4e3?auto=format&fit=crop&w=800&q=80"
-                alt="Super Mario Sunshine"
-            >
+            <div class="game-cover mario">
+
+                <div class="cover-console">
+                    GAMECUBE
+                </div>
+
+                <div class="cover-icon">
+                    🍄
+                </div>
+
+            </div>
+
 
             <div class="game-info">
 
@@ -367,14 +676,14 @@ footer{
                 </div>
 
                 <div class="game-category">
-                    🎮 GameCube
+                    🎮 Nintendo GameCube
                 </div>
 
                 <a
-                    class="details-btn"
                     href="games/super-mario-sunshine.html"
+                    class="details-btn"
                 >
-                    View Details
+                    View Details →
                 </a>
 
             </div>
@@ -383,17 +692,26 @@ footer{
 
 
 
+        <!-- GAME 2 -->
+
         <div
             class="game-card"
             data-category="GameCube"
             data-name="The Legend of Zelda Wind Waker"
         >
 
-            <img
-                class="game-image"
-                src="https://images.unsplash.com/photo-1605870445919-838d190e8e1b?auto=format&fit=crop&w=800&q=80"
-                alt="The Legend of Zelda Wind Waker"
-            >
+            <div class="game-cover zelda">
+
+                <div class="cover-console">
+                    GAMECUBE
+                </div>
+
+                <div class="cover-icon">
+                    🗡️
+                </div>
+
+            </div>
+
 
             <div class="game-info">
 
@@ -402,14 +720,14 @@ footer{
                 </div>
 
                 <div class="game-category">
-                    🎮 GameCube
+                    🎮 Nintendo GameCube
                 </div>
 
                 <a
-                    class="details-btn"
                     href="games/zelda-wind-waker.html"
+                    class="details-btn"
                 >
-                    View Details
+                    View Details →
                 </a>
 
             </div>
@@ -418,17 +736,26 @@ footer{
 
 
 
+        <!-- GAME 3 -->
+
         <div
             class="game-card"
             data-category="GameCube"
             data-name="Mario Kart Double Dash"
         >
 
-            <img
-                class="game-image"
-                src="https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=800&q=80"
-                alt="Mario Kart Double Dash"
-            >
+            <div class="game-cover mariokart">
+
+                <div class="cover-console">
+                    GAMECUBE
+                </div>
+
+                <div class="cover-icon">
+                    🏎️
+                </div>
+
+            </div>
+
 
             <div class="game-info">
 
@@ -437,14 +764,14 @@ footer{
                 </div>
 
                 <div class="game-category">
-                    🎮 GameCube
+                    🎮 Nintendo GameCube
                 </div>
 
                 <a
-                    class="details-btn"
                     href="games/mario-kart-double-dash.html"
+                    class="details-btn"
                 >
-                    View Details
+                    View Details →
                 </a>
 
             </div>
@@ -453,17 +780,26 @@ footer{
 
 
 
+        <!-- GAME 4 -->
+
         <div
             class="game-card"
             data-category="GameCube"
             data-name="Super Smash Bros Melee"
         >
 
-            <img
-                class="game-image"
-                src="https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=800&q=80"
-                alt="Super Smash Bros Melee"
-            >
+            <div class="game-cover smash">
+
+                <div class="cover-console">
+                    GAMECUBE
+                </div>
+
+                <div class="cover-icon">
+                    ⚔️
+                </div>
+
+            </div>
+
 
             <div class="game-info">
 
@@ -472,14 +808,14 @@ footer{
                 </div>
 
                 <div class="game-category">
-                    🎮 GameCube
+                    🎮 Nintendo GameCube
                 </div>
 
                 <a
-                    class="details-btn"
                     href="games/super-smash-bros-melee.html"
+                    class="details-btn"
                 >
-                    View Details
+                    View Details →
                 </a>
 
             </div>
@@ -488,17 +824,26 @@ footer{
 
 
 
+        <!-- GAME 5 -->
+
         <div
             class="game-card"
             data-category="GameCube"
             data-name="Metroid Prime"
         >
 
-            <img
-                class="game-image"
-                src="https://images.unsplash.com/photo-1493711662062-fa541adb3fc8?auto=format&fit=crop&w=800&q=80"
-                alt="Metroid Prime"
-            >
+            <div class="game-cover metroid">
+
+                <div class="cover-console">
+                    GAMECUBE
+                </div>
+
+                <div class="cover-icon">
+                    👾
+                </div>
+
+            </div>
+
 
             <div class="game-info">
 
@@ -507,14 +852,14 @@ footer{
                 </div>
 
                 <div class="game-category">
-                    🎮 GameCube
+                    🎮 Nintendo GameCube
                 </div>
 
                 <a
-                    class="details-btn"
                     href="games/metroid-prime.html"
+                    class="details-btn"
                 >
-                    View Details
+                    View Details →
                 </a>
 
             </div>
@@ -523,10 +868,7 @@ footer{
 
 
 
-        <!-- ========================= -->
-        <!-- PS4 -->
-        <!-- ========================= -->
-
+        <!-- GAME 6 -->
 
         <div
             class="game-card"
@@ -534,11 +876,18 @@ footer{
             data-name="Grand Theft Auto V"
         >
 
-            <img
-                class="game-image"
-                src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=800&q=80"
-                alt="Grand Theft Auto V"
-            >
+            <div class="game-cover gta">
+
+                <div class="cover-console">
+                    PS4
+                </div>
+
+                <div class="cover-icon">
+                    🎮
+                </div>
+
+            </div>
+
 
             <div class="game-info">
 
@@ -547,14 +896,14 @@ footer{
                 </div>
 
                 <div class="game-category">
-                    🎮 PS4
+                    🎮 PlayStation 4
                 </div>
 
                 <a
-                    class="details-btn"
                     href="games/gta-5.html"
+                    class="details-btn"
                 >
-                    View Details
+                    View Details →
                 </a>
 
             </div>
@@ -565,23 +914,37 @@ footer{
     </div>
 
 
+
     <!-- NO RESULTS -->
 
     <div
         class="no-results"
         id="noResults"
     >
+
+        🔎
+
+        <br><br>
+
         No games found.
+
     </div>
+
 
 </div>
 
 
-<!-- FOOTER -->
+
+<!-- ================= FOOTER ================= -->
 
 <footer>
 
-    © 2026 All Console Games
+    © 2026
+    <strong>Console Games Hub</strong>
+
+    <br><br>
+
+    All games belong to their respective owners.
 
 </footer>
 
@@ -589,25 +952,27 @@ footer{
 
 <script>
 
+/* CURRENT CATEGORY */
+
 let currentCategory = "All";
 
 
 /* =========================
-   CATEGORY FILTER
+   FILTER CATEGORY
 ========================= */
 
-function filterCategory(category, button){
+function filterCategory(category,button){
 
     currentCategory = category;
 
 
     document
-        .querySelectorAll(".category-btn")
-        .forEach(function(btn){
+    .querySelectorAll(".category-btn")
+    .forEach(function(btn){
 
-            btn.classList.remove("active");
+        btn.classList.remove("active");
 
-        });
+    });
 
 
     button.classList.add("active");
@@ -620,7 +985,7 @@ function filterCategory(category, button){
 
 
 /* =========================
-   SEARCH + FILTER
+   SEARCH
 ========================= */
 
 function searchGames(){
@@ -665,13 +1030,11 @@ function searchGames(){
 
         if(nameMatch && categoryMatch){
 
-            game.style.display = "block";
+            game.style.display = "";
 
             found++;
 
-        }
-
-        else{
+        }else{
 
             game.style.display = "none";
 
@@ -680,39 +1043,35 @@ function searchGames(){
     });
 
 
-    let noResults =
-        document.getElementById("noResults");
+    document
+    .getElementById("gameCount")
+    .innerText =
+        found + " Games";
 
 
     if(found === 0){
 
-        noResults.style.display = "block";
+        document
+        .getElementById("noResults")
+        .style.display = "block";
 
-    }
+    }else{
 
-    else{
-
-        noResults.style.display = "none";
+        document
+        .getElementById("noResults")
+        .style.display = "none";
 
     }
 
 }
 
 
-/* =========================
-   PAGE LOAD
-========================= */
+/* RUN ON LOAD */
 
-document.addEventListener(
-    "DOMContentLoaded",
-    function(){
-
-        searchGames();
-
-    }
-);
+searchGames();
 
 </script>
+
 
 </body>
 </html>
