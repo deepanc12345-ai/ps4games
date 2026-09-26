@@ -1,0 +1,39 @@
+name: Extract SEO Package
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  extract:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Extract SEO package
+        run: |
+          rm -rf /tmp/seo
+          mkdir -p /tmp/seo
+          unzip -q allconsolegames_seo_pages.zip -d /tmp/seo
+
+          cp -r /tmp/seo/games ./games
+          cp /tmp/seo/sitemap.xml ./sitemap.xml
+          cp /tmp/seo/robots.txt ./robots.txt
+
+      - name: Commit SEO files
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add games sitemap.xml robots.txt
+
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+          else
+            git commit -m "Add SEO game pages and sitemap"
+            git push
+          fi
