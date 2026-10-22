@@ -10,43 +10,325 @@
 
 <style>
 *{box-sizing:border-box}
-body{margin:0;background:#0b1120;color:#f4f7ff;font-family:Arial,sans-serif}
-header{text-align:center;padding:22px 12px;background:linear-gradient(135deg,#172c49,#123c43)}
-header a{color:#45e0b0;text-decoration:none;font-size:13px}
-h1{font-size:24px;margin:12px 0 6px}
-header p,.muted{color:#a6b4cc;font-size:13px}
-main{max-width:650px;margin:auto;padding:12px}
-.card{background:#141e30;border:1px solid #2c3b52;border-radius:15px;padding:15px;margin-bottom:14px}
-.label{display:block;color:#a6b4cc;font-size:12px;margin-bottom:8px}
-.total{font-size:clamp(30px,8vw,42px);font-weight:bold;color:#45e0b0;overflow-wrap:anywhere}
-.stats{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:15px}
-.stat{background:#1b2940;border-radius:10px;padding:12px}
-.stat strong{display:block;font-size:19px;margin-top:6px}
-h2{font-size:17px;margin:0 0 12px}
-table{width:100%;border-collapse:collapse}
-th,td{padding:11px 3px;border-bottom:1px solid #2c3b52;text-align:right;font-size:13px}
-th{color:#a6b4cc;font-size:12px}
-th:first-child,td:first-child{text-align:left}
-.qty{width:72px;padding:10px 3px;text-align:center;border:1px solid #40516b;border-radius:8px;background:#0b1424;color:white;font-size:16px}
-.amount{white-space:nowrap;font-weight:bold}
-.type{display:block;color:#a6b4cc;font-size:10px;margin-top:4px}
-.field{width:100%;padding:12px;background:#0b1424;color:white;border:1px solid #40516b;border-radius:9px;font-size:16px;margin-bottom:10px}
-button{padding:12px;border:0;border-radius:9px;background:#45e0b0;color:#08231b;font-weight:bold;cursor:pointer}
-.secondary{background:#1b2940;color:white;border:1px solid #40516b}
-.actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:13px}
-.actions button{flex:1}
-.status{background:#1b2940;padding:12px;border-radius:9px;margin-top:10px;font-size:14px}
-.history-item{padding:12px 0;border-bottom:1px solid #2c3b52;font-size:13px}
-.history-item small{display:block;color:#a6b4cc;margin:6px 0}
-footer{text-align:center;color:#a6b4cc;font-size:12px;padding:20px}
-@media(max-width:360px){.card{padding:10px}.qty{width:54px}td,th{font-size:11px}}
+
+:root{
+  --bg:#0b1120;
+  --card:#141e30;
+  --panel:#1b2940;
+  --border:#35465f;
+  --text:#f4f7ff;
+  --muted:#b6c3d8;
+  --green:#45e0b0;
+}
+
+html{
+  -webkit-text-size-adjust:100%;
+  text-size-adjust:100%;
+}
+
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family:Arial,sans-serif;
+  font-size:16px;
+  line-height:1.5;
+}
+
+header{
+  text-align:center;
+  padding:26px 14px;
+  background:linear-gradient(135deg,#172c49,#123c43);
+}
+
+header a{
+  color:var(--green);
+  text-decoration:none;
+  font-size:16px;
+}
+
+h1{
+  font-size:clamp(26px,6vw,34px);
+  line-height:1.25;
+  margin:15px 0 8px;
+}
+
+header p,.muted{
+  color:var(--muted);
+  font-size:15px;
+  margin:8px 0 0;
+}
+
+main{
+  width:100%;
+  max-width:760px;
+  margin:auto;
+  padding:16px;
+}
+
+.card{
+  background:var(--card);
+  border:1px solid #2c3b52;
+  border-radius:17px;
+  padding:20px;
+  margin-bottom:18px;
+}
+
+.label{
+  display:block;
+  color:var(--muted);
+  font-size:15px;
+  margin-bottom:9px;
+}
+
+.total{
+  font-size:clamp(38px,10vw,54px);
+  line-height:1.2;
+  font-weight:800;
+  color:var(--green);
+  overflow-wrap:anywhere;
+  margin:5px 0;
+}
+
+#words{
+  font-size:16px;
+}
+
+.stats{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+  margin-top:18px;
+}
+
+.stat{
+  min-width:0;
+  background:var(--panel);
+  border-radius:13px;
+  padding:15px;
+}
+
+.stat strong{
+  display:block;
+  font-size:24px;
+  line-height:1.3;
+  margin-top:5px;
+  overflow-wrap:anywhere;
+}
+
+h2{
+  font-size:22px;
+  line-height:1.3;
+  margin:0 0 18px;
+}
+
+table{
+  width:100%;
+  border-collapse:collapse;
+  table-layout:fixed;
+}
+
+th,td{
+  padding:15px 5px;
+  border-bottom:1px solid #2c3b52;
+  text-align:right;
+  font-size:16px;
+  vertical-align:middle;
+}
+
+th{
+  color:var(--muted);
+  font-size:14px;
+  font-weight:700;
+}
+
+th:first-child,td:first-child{
+  text-align:left;
+  width:37%;
+}
+
+th:nth-child(2),td:nth-child(2){
+  width:30%;
+  text-align:center;
+}
+
+th:nth-child(3),td:nth-child(3){
+  width:33%;
+}
+
+td:first-child b{
+  font-size:19px;
+}
+
+.qty{
+  display:block;
+  width:100%;
+  max-width:105px;
+  min-width:0;
+  height:52px;
+  margin:auto;
+  padding:8px 4px;
+  text-align:center;
+  border:1px solid #50627c;
+  border-radius:10px;
+  background:#091324;
+  color:#fff;
+  font-family:inherit;
+  font-size:22px;
+  font-weight:700;
+  outline:none;
+  appearance:textfield;
+  -moz-appearance:textfield;
+}
+
+.qty::-webkit-inner-spin-button,
+.qty::-webkit-outer-spin-button{
+  -webkit-appearance:none;
+  margin:0;
+}
+
+.qty:focus,.field:focus{
+  border-color:var(--green);
+  box-shadow:0 0 0 2px #45e0b033;
+}
+
+.amount{
+  white-space:nowrap;
+  font-size:17px;
+  font-weight:800;
+}
+
+.type{
+  display:block;
+  color:var(--muted);
+  font-size:13px;
+  margin-top:4px;
+}
+
+.field{
+  display:block;
+  width:100%;
+  min-height:54px;
+  padding:14px;
+  background:#091324;
+  color:white;
+  border:1px solid #50627c;
+  border-radius:11px;
+  font-family:inherit;
+  font-size:18px;
+  margin-bottom:12px;
+}
+
+.field::placeholder{
+  color:#8e9bb0;
+  opacity:1;
+}
+
+button{
+  min-height:52px;
+  padding:13px 16px;
+  border:0;
+  border-radius:11px;
+  background:var(--green);
+  color:#08231b;
+  font-family:inherit;
+  font-size:17px;
+  font-weight:800;
+  cursor:pointer;
+  touch-action:manipulation;
+}
+
+button:active{
+  transform:scale(.98);
+}
+
+.secondary{
+  background:var(--panel);
+  color:white;
+  border:1px solid #50627c;
+}
+
+.actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  margin-top:16px;
+}
+
+.actions button{
+  flex:1 1 140px;
+}
+
+.status{
+  background:var(--panel);
+  padding:15px;
+  border-radius:11px;
+  margin-top:12px;
+  font-size:16px;
+  line-height:1.5;
+  overflow-wrap:anywhere;
+}
+
+.history-item{
+  padding:15px 0;
+  border-bottom:1px solid #2c3b52;
+  font-size:16px;
+}
+
+.history-item small{
+  display:block;
+  color:var(--muted);
+  margin:7px 0 10px;
+}
+
+.history-item button{
+  min-height:44px;
+  font-size:15px;
+}
+
+footer{
+  text-align:center;
+  color:var(--muted);
+  font-size:14px;
+  padding:24px 16px;
+}
+
+@media(min-width:600px){
+  main{padding:22px}
+  .card{padding:24px}
+  th,td{padding:17px 8px}
+}
+
+@media(max-width:380px){
+  main{padding:10px}
+  .card{padding:13px;border-radius:13px}
+  h2{font-size:20px}
+  th{font-size:12px}
+  th,td{padding:13px 2px;font-size:14px}
+  th:first-child,td:first-child{width:35%}
+  th:nth-child(2),td:nth-child(2){width:31%}
+  th:nth-child(3),td:nth-child(3){width:34%}
+  td:first-child b{font-size:17px}
+  .qty{height:48px;font-size:20px}
+  .amount{font-size:14px}
+  .type{font-size:12px}
+  .stat{padding:11px}
+  .stat strong{font-size:21px}
+  .label{font-size:14px}
+}
+
 @media print{
-body{background:white;color:black}
-header{background:white;color:black}
-header a,.actions,#historyCard,#paymentCard,footer{display:none!important}
-.card,.stat,.status{background:white;color:black;border:1px solid #ccc}
-.total{color:black}.muted,.label,.type,th{color:#444}
-.qty,.field{background:white;color:black}
+  body{background:white;color:black}
+  header{background:white;color:black}
+  header a,.actions,#historyCard,#paymentCard,footer{
+    display:none!important
+  }
+  .card,.stat,.status{
+    background:white;color:black;border:1px solid #ccc
+  }
+  .total{color:black}
+  .muted,.label,.type,th{color:#444}
+  .qty,.field{background:white;color:black}
 }
 </style>
 </head>
@@ -63,6 +345,7 @@ header a,.actions,#historyCard,#paymentCard,footer{display:none!important}
 <span class="label">GRAND TOTAL</span>
 <div class="total" id="grandTotal">₹0</div>
 <div class="muted" id="words">Zero Rupees Only</div>
+
 <div class="stats">
 <div class="stat">
 <span class="label">Total Notes &amp; Coins</span>
@@ -79,11 +362,18 @@ header a,.actions,#historyCard,#paymentCard,footer{display:none!important}
 <h2>Cash Details</h2>
 <table>
 <thead>
-<tr><th>Denomination</th><th>Quantity</th><th>Amount</th></tr>
+<tr>
+<th>Denomination</th>
+<th>Quantity</th>
+<th>Amount</th>
+</tr>
 </thead>
 <tbody id="cashRows"></tbody>
 <tfoot>
-<tr><td colspan="2"><b>Total</b></td><td class="amount" id="tableTotal">₹0</td></tr>
+<tr>
+<td colspan="2"><b>Total</b></td>
+<td class="amount" id="tableTotal">₹0</td>
+</tr>
 </tfoot>
 </table>
 <div class="actions">
@@ -95,13 +385,18 @@ header a,.actions,#historyCard,#paymentCard,footer{display:none!important}
 <section class="card" id="paymentCard">
 <h2>Required Payment Check</h2>
 <label class="label" for="required">Required amount (₹)</label>
-<input class="field" id="required" type="number" min="0" step="1" inputmode="numeric" placeholder="Enter required amount">
-<div class="status" id="paymentStatus">Enter the required amount to compare.</div>
+<input class="field" id="required" type="number"
+min="0" step="1" inputmode="numeric"
+placeholder="Enter required amount">
+<div class="status" id="paymentStatus">
+Enter the required amount to compare.
+</div>
 </section>
 
 <section class="card">
 <h2>Save Cash Record</h2>
-<input class="field" id="recordName" type="text" maxlength="80" placeholder="Shop / transaction name">
+<input class="field" id="recordName" type="text"
+maxlength="80" placeholder="Shop / transaction name">
 <div class="actions">
 <button id="saveBtn">Save Record</button>
 <button class="secondary" id="resetBtn">Reset All</button>
@@ -125,22 +420,36 @@ header a,.actions,#historyCard,#paymentCard,footer{display:none!important}
 
 const denominations=[500,200,100,50,20,10,5,2,1];
 const $=id=>document.getElementById(id);
-const fmt=n=>new Intl.NumberFormat("en-IN",{maximumFractionDigits:0}).format(n);
+const fmt=n=>new Intl.NumberFormat("en-IN",{
+  maximumFractionDigits:0
+}).format(n);
 const money=n=>"₹"+fmt(n);
+
 let quantities=Array(9).fill(0);
 let history=[];
 
 try{
-  const data=JSON.parse(localStorage.getItem("acg_denom_history")||"[]");
-  if(Array.isArray(data)) history=data.slice(0,20);
-}catch(e){history=[];}
+  const data=JSON.parse(
+    localStorage.getItem("acg_denom_history")||"[]"
+  );
+  if(Array.isArray(data))history=data.slice(0,20);
+}catch(e){
+  history=[];
+}
 
 function words(n){
-  if(!Number.isSafeInteger(n)||n<0)return "Amount too large";
+  if(!Number.isSafeInteger(n)||n<0)
+    return "Amount too large";
+
   if(n===0)return "Zero Rupees Only";
 
-  const one=["","One","Two","Three","Four","Five","Six","Seven","Eight","Nine","Ten","Eleven","Twelve","Thirteen","Fourteen","Fifteen","Sixteen","Seventeen","Eighteen","Nineteen"];
-  const ten=["","","Twenty","Thirty","Forty","Fifty","Sixty","Seventy","Eighty","Ninety"];
+  const one=["","One","Two","Three","Four","Five","Six",
+    "Seven","Eight","Nine","Ten","Eleven","Twelve",
+    "Thirteen","Fourteen","Fifteen","Sixteen",
+    "Seventeen","Eighteen","Nineteen"];
+
+  const ten=["","","Twenty","Thirty","Forty","Fifty",
+    "Sixty","Seventy","Eighty","Ninety"];
 
   function part(x){
     let s="";
@@ -153,18 +462,22 @@ function words(n){
       s+=ten[Math.floor(x/10)];
       x%=10;
       if(x)s+=" "+one[x];
-    }else if(x)s+=one[x];
+    }else if(x){
+      s+=one[x];
+    }
     return s;
   }
 
   let result="";
-  [[10000000,"Crore"],[100000,"Lakh"],[1000,"Thousand"],[1,""]].forEach(([v,label])=>{
+  [[10000000,"Crore"],[100000,"Lakh"],
+   [1000,"Thousand"],[1,""]].forEach(([v,label])=>{
     const q=Math.floor(n/v);
     if(q){
       result+=(result?" ":"")+part(q)+(label?" "+label:"");
       n%=v;
     }
   });
+
   return result+" Rupees Only";
 }
 
@@ -172,7 +485,9 @@ function calculate(){
   let total=0,count=0,used=0;
 
   denominations.forEach((d,i)=>{
-    let q=Number($("qty"+i).value);
+    const input=$("qty"+i);
+    let q=Number(input.value);
+
     if(!Number.isSafeInteger(q)||q<0)q=0;
     quantities[i]=q;
 
@@ -195,9 +510,12 @@ function calculate(){
   let msg="Enter the required amount to compare.";
 
   if(input!==""&&Number.isSafeInteger(required)&&required>=0){
-    if(total===required)msg="MATCHED — Exact amount received.";
-    else if(total>required)msg="EXCESS — "+money(total-required)+" extra received.";
-    else msg="SHORTAGE — "+money(required-total)+" still required.";
+    if(total===required)
+      msg="MATCHED — Exact amount received.";
+    else if(total>required)
+      msg="EXCESS — "+money(total-required)+" extra received.";
+    else
+      msg="SHORTAGE — "+money(required-total)+" still required.";
   }
 
   $("paymentStatus").textContent=msg;
@@ -207,8 +525,15 @@ function calculate(){
 function renderRows(){
   $("cashRows").innerHTML=denominations.map((d,i)=>`
     <tr>
-      <td><b>${money(d)}</b><span class="type">${i<6?"Note":"Coin"}</span></td>
-      <td><input class="qty" id="qty${i}" type="number" min="0" step="1" inputmode="numeric" value="0" aria-label="${d} rupee quantity"></td>
+      <td>
+        <b>${money(d)}</b>
+        <span class="type">${i<6?"Note":"Coin"}</span>
+      </td>
+      <td>
+        <input class="qty" id="qty${i}" type="number"
+          min="0" step="1" inputmode="numeric" value="0"
+          aria-label="${d} rupee quantity">
+      </td>
       <td class="amount" id="amount${i}">₹0</td>
     </tr>
   `).join("");
@@ -220,13 +545,19 @@ function renderRows(){
 
 function escapeHTML(s){
   return String(s).replace(/[&<>"']/g,c=>({
-    "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
+    "&":"&amp;",
+    "<":"&lt;",
+    ">":"&gt;",
+    '"':"&quot;",
+    "'":"&#39;"
   }[c]));
 }
 
 function persist(){
   try{
-    localStorage.setItem("acg_denom_history",JSON.stringify(history));
+    localStorage.setItem(
+      "acg_denom_history",JSON.stringify(history)
+    );
     return true;
   }catch(e){
     alert("Unable to save. Browser storage may be disabled.");
@@ -236,7 +567,8 @@ function persist(){
 
 function renderHistory(){
   if(!history.length){
-    $("history").innerHTML='<p class="muted">No saved records yet.</p>';
+    $("history").innerHTML=
+      '<p class="muted">No saved records yet.</p>';
     return;
   }
 
@@ -258,8 +590,10 @@ function renderHistory(){
         $("qty"+i).value=r.quantities[i]||0;
       });
 
-      $("required").value=r.required==null?"":r.required;
+      $("required").value=
+        r.required==null?"":r.required;
       $("recordName").value=r.name||"";
+
       calculate();
       window.scrollTo({top:0,behavior:"smooth"});
     });
@@ -267,37 +601,50 @@ function renderHistory(){
 }
 
 $("clearBtn").addEventListener("click",()=>{
-  denominations.forEach((d,i)=>$("qty"+i).value=0);
+  denominations.forEach((d,i)=>{
+    $("qty"+i).value="0";
+  });
   calculate();
 });
 
 $("resetBtn").addEventListener("click",()=>{
-  if(!confirm("Reset all quantities and payment details?"))return;
-  denominations.forEach((d,i)=>$("qty"+i).value=0);
+  if(!confirm("Reset all quantities and payment details?"))
+    return;
+
+  denominations.forEach((d,i)=>{
+    $("qty"+i).value="0";
+  });
+
   $("required").value="";
   $("recordName").value="";
   calculate();
 });
 
 $("required").addEventListener("input",calculate);
-$("printBtn").addEventListener("click",()=>window.print());
+
+$("printBtn").addEventListener("click",()=>{
+  window.print();
+});
 
 $("saveBtn").addEventListener("click",()=>{
   const r=calculate();
   const text=$("required").value.trim();
   const required=text===""?null:Number(text);
 
-  if(!Number.isSafeInteger(r.total)||!Number.isSafeInteger(r.count)){
+  if(!Number.isSafeInteger(r.total)||
+     !Number.isSafeInteger(r.count)){
     alert("Amount is too large.");
     return;
   }
 
-  if(required!==null&&(!Number.isSafeInteger(required)||required<0)){
+  if(required!==null&&
+     (!Number.isSafeInteger(required)||required<0)){
     alert("Enter a valid required amount.");
     return;
   }
 
   const old=history;
+
   history=[{
     name:$("recordName").value.trim(),
     date:new Date().toLocaleString("en-IN"),
@@ -317,23 +664,22 @@ $("saveBtn").addEventListener("click",()=>{
 
 $("deleteHistoryBtn").addEventListener("click",()=>{
   if(!confirm("Delete all saved records?"))return;
+
   const old=history;
   history=[];
-  if(persist())renderHistory();
-  else history=old;
+
+  if(persist()){
+    renderHistory();
+  }else{
+    history=old;
+  }
 });
 
 $("year").textContent=new Date().getFullYear();
+
 renderRows();
 renderHistory();
 calculate();
-</script>
-
-<!-- PopAds script: supplied by the site owner -->
-<script type="text/javascript" data-cfasync="false">
-/*<![CDATA[/* */
-(function(){var e=window,n="c68049e10a6d50c79477526e41f37353",l=[["siteId",645-312+954*914-775+4449751],["minBid",0],["popundersPerIP","0"],["delayBetween",0],["default",false],["defaultPerDay",0],["topmostLayer","auto"]],i=["d3d3LmludGVsbGlwb3B1cC5jb20vdGZsb3cubWluLmNzcw==","ZDNtcjd5MTU0ZDJxZzUuY2xvdWRmcm9udC5uZXQvQU0vaGpxdWVyeS50eXBlYWhlYWQubWluLmpz"],s=-1,o,t,r=function(){clearTimeout(t);s++;if(i[s]&&!(1818527729000<(new Date).getTime()&&1<s)){o=e.document.createElement("script");o.type="text/javascript";o.async=!0;var u=e.document.getElementsByTagName("script")[0];o.src="https://"+atob(i[s]);o.crossOrigin="anonymous";o.onerror=r;o.onload=function(){clearTimeout(t);e[n.slice(0,16)+n.slice(0,16)]||r()};t=setTimeout(r,5E3);u.parentNode.insertBefore(o,u)}};if(!e[n]){try{Object.freeze(e[n]=l)}catch(e){}r()}})();
-/*]]>/* */
 </script>
 
 </body>
